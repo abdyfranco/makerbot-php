@@ -273,7 +273,7 @@ class Replicator
             if (!isset($response->method)) {
                 break;
             } else {
-                $response = $this->socketRequest('get_system_information');
+                $response = $this->socketRequest('load_print_tool', ['index' => 0]);
             }
         }
 
@@ -348,7 +348,7 @@ class Replicator
             if (!isset($response->method)) {
                 break;
             } else {
-                $response = $this->socketRequest('get_system_information');
+                $response = $this->socketRequest('preheat', ['temperature_settings' => [$temperature]]);
             }
         }
 
@@ -356,15 +356,14 @@ class Replicator
     }
 
     /**
-     * @param int $temperature
      * @return stdClass
      */
-    public function cool($temperature = 180)
+    public function cool()
     {
         $this->createSocket();
         $this->socketRequest('authenticate', ['access_token' => $this->getAccessToken()]);
 
-        $response = $this->socketRequest('preheat', ['temperature_settings' => [$temperature]]);
+        $response = $this->socketRequest('cool', ['ignore_tool_errors' => false]);
 
         while (true) {
             if (!isset($response->method)) {
