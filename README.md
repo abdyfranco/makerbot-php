@@ -8,7 +8,7 @@ use Makerbot\Replicator;
 
 $Replicator = new Replicator('192.168.1.100');
 
-$Replicator->authenticate();
+$Replicator->authenticate(); // Press the knob on the printer to authorize
 $Replicator->loadFilament();
 sleep(5);
 $Replicator->stopFilament();
