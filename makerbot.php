@@ -409,6 +409,7 @@ class Replicator
         $this->socketRequest('authenticate', ['access_token' => $this->getAccessToken()]);
 
         $this->socketRequest('process_method', ['method' => 'acknowledge_error']);
+        $this->socketRequest('process_method', ['method' => 'acknowledge_failure']);
 
         return $this->socketRequest('acknowledged', ['error_id' => -1]);
     }
