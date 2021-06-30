@@ -26,7 +26,7 @@ class Replicator
 
     public function __construct($ip_address)
     {
-        ini_set('max_execution_time', '300');
+        ini_set('max_execution_time', 0);
 
         $this->ip_address = $ip_address;
     }
@@ -442,9 +442,9 @@ class Replicator
     public function recoverFilamentSlip()
     {
         $this->pause();
-        sleep(7);
+        sleep(5);
         $this->loadFilament();
-        sleep(7);
+        sleep(5);
         $this->stopFilament();
         sleep(2);
 
@@ -457,7 +457,7 @@ class Replicator
     public function recoverTemperatureSag()
     {
         $this->pause();
-        sleep(10);
+        sleep(2);
 
         return $this->unpause();
     }
